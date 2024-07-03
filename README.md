@@ -1,8 +1,53 @@
 # Image Set Template
 
-This template provides a structure for creating and publishing npm packages containing compressed image sets. It's designed to work seamlessly with Next.js projects and includes automatic image compression.
+This repository is a template for creating and publishing npm packages containing optimized image sets, designed to work seamlessly with Next.js projects.
 
-## Setting Up Your Own Image Set
+## Table of Contents
+
+1. [Why I Created This](#why-i-created-this)
+2. [How It Works](#how-it-works)
+3. [Getting Started](#getting-started)
+   - [Setting Up Your Own Image Set](#setting-up-your-own-image-set)
+   - [Folder Structure](#folder-structure)
+4. [Image Compression](#image-compression)
+5. [Publishing Your Package](#publishing-your-package)
+   - [NPM Tutorial for Beginners](#npm-tutorial-for-beginners)
+6. [Using the Image Set in a Next.js Project](#using-the-image-set-in-a-nextjs-project)
+7. [License](#license)
+
+## Why I Created This
+
+This repository was created to facilitate static image contributions for web projects without the need for complex database systems or user management infrastructure.
+The core concept is to simplify image contributions to the level of a pull request. Here's how it works:
+- Git manages the submission process
+- npm handles image packaging
+- Automated scripts optimize images behind the scenes
+
+This solution may be suitable for you if:
+- You're developing an open-source project and want to encourage contributions (from others) for assets
+- You don't want to set up additional database or cloud services 
+- You see value in separating image assets from your main codebase
+- Your project benefits from community-driven assets
+
+## How It Works
+
+1. The template provides a structure for organizing images and scripts for processing them.
+2. Images are automatically compressed and converted to WebP format.
+3. The resulting package can be easily imported and used in Next.js projects.
+
+### Workflow Overview
+
+```mermaid
+graph LR
+    A[Image Set Package] -->|1. Publish| B[npm Registry]
+    B -->|2. Install| C[Next.js Project]
+    C -->|3. Use| D[Optimized Images]
+   ```
+This diagram illustrates how the Image Set package is published to npm, installed in a Next.js project, and then used to access optimized images.
+
+## Getting Started
+
+### Setting Up Your Own Image Set
 
 1. Clone this repository:
    ```
@@ -65,7 +110,19 @@ This template uses the `sharp` library to automatically compress and convert ima
 
 To customize compression settings, edit the `scripts/compress-images.js` file.
 
-## NPM Tutorial
+
+## Publishing Your Package
+
+To publish your package to npm:
+
+1. Make sure you have an npm account and are logged in locally
+2. Run the publish script:
+   ```
+   npm run publish-package
+   ```
+3. Follow the prompts to bump the version and publish
+
+### NPM Tutorial for Beginners
 
 If you're new to npm, here's a quick guide to get you started:
 
@@ -101,17 +158,6 @@ If you're new to npm, here's a quick guide to get you started:
    - Increment MAJOR for incompatible changes
 
 Remember, once you publish a version, you can't overwrite it. Always increment the version number for new publications.
-
-## Publishing Your Package
-
-To publish your package to npm:
-
-1. Make sure you have an npm account and are logged in locally
-2. Run the publish script:
-   ```
-   npm run publish-package
-   ```
-3. Follow the prompts to bump the version and publish
 
 ## Using the Image Set in a Next.js Project
 
