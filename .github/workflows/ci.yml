@@ -17,5 +17,9 @@ jobs:
         with:
           node-version: '18'
       - run: npm ci
-      - run: npm run compress-images
-      - run: npm test
+      - name: Compress images
+        run: npm run compress-images
+      - name: Build types
+        run: npm run build-types
+      - name: Run tests
+        run: npm test

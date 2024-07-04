@@ -1,4 +1,3 @@
-// @ts-check
 const fs = require('fs');
 const path = require('path');
 const packageJson = require('../package.json');
@@ -15,6 +14,7 @@ const imageSetDir = path.join(__dirname, '..', 'public', 'images', imageSetName)
  * @returns {string[]} An array of relative file paths.
  */
 function getImageList(dir = imageSetDir) {
+  /** @type {string[]} */
   let results = [];
   const entries = fs.readdirSync(dir, { withFileTypes: true });
 
