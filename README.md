@@ -1,5 +1,8 @@
 # Image Set Template
 
+[![CI](https://github.com/infinia-yzl/image-set/actions/workflows/ci.yml/badge.svg)](https://github.com/infinia-yzl/image-set/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/image-set.svg)](https://www.npmjs.com/package/image-set)
+
 This repository is a template for creating and publishing npm packages containing optimized image sets, designed to work seamlessly with Next.js projects.
 
 ## Table of Contents

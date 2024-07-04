@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npm run compress-images
+      - run: npm test
+
+  verify-npm-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check if package version exists on npm
+        run: |
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          if npm view image-set@$PKG_VERSION version &> /dev/null; then
+            echo "Version $PKG_VERSION already exists on npm"
+            exit 1
+          else
+            echo "Version $PKG_VERSION is new"
+          fi
