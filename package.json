@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/infinia-yzl/image-set.git"
+    "url": "git+https://github.com/infinia-yzl/image-set.git"
   },
   "keywords": [
     "template",
@@ -37,6 +37,8 @@
     "publish-package": "node scripts/publish.js"
   },
   "devDependencies": {
-    "sharp": "^0.32.1"
+    "@types/node": "^20.14.9",
+    "sharp": "^0.32.1",
+    "typescript": "^5.5.3"
   }
 }

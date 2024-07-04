@@ -1,12 +1,21 @@
+// @ts-check
 const fs = require('fs').promises;
 const path = require('path');
 const sharp = require('sharp');
 
 const packageJson = require('../package.json');
+
+/**
+ * @type {string}
+ */
 const imageSetName = packageJson.name.replace(/^@.*\//, ''); // Removes scope if present
 const baseImageDir = path.join(__dirname, '..', 'public', 'images');
 const imageSetDir = path.join(baseImageDir, imageSetName);
 
+/**
+ * Ensures the correct structure for the image set.
+ * @returns {Promise<void>}
+ */
 async function ensureImageSetStructure() {
   try {
     await fs.mkdir(imageSetDir, { recursive: true });
@@ -25,6 +34,11 @@ async function ensureImageSetStructure() {
   }
 }
 
+/**
+ * Compresses images in the given directory.
+ * @param {string} dir - The directory to process.
+ * @returns {Promise<void>}
+ */
 async function compressImages(dir) {
   try {
     const entries = await fs.readdir(dir, { withFileTypes: true });
@@ -58,6 +72,10 @@ async function compressImages(dir) {
   }
 }
 
+/**
+ * Main function to run the image compression process.
+ * @returns {Promise<void>}
+ */
 async function main() {
   try {
     await ensureImageSetStructure();
