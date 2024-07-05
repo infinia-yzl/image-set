@@ -5,6 +5,11 @@
 
 This repository is a template for creating and publishing npm packages containing optimized image sets, designed to work seamlessly with Next.js projects.
 
+## DISCLAIMER 
+**ALWAYS HAVE A BACKUP OF YOUR IMAGES OUTSIDE THIS PROJECT. THE SCRIPTS IN THIS PROJECT WILL MODIFY YOUR IMAGES.**
+
+See the [LICENSE](LICENSE) file.
+
 ## Table of Contents
 
 1. [Why I Created This](#why-i-created-this)
@@ -107,11 +112,11 @@ This template uses the `sharp` library to automatically compress and convert ima
 - Creates a folder with your package name in `public/images/` if it doesn't exist
 - Moves any misplaced files or folders into this folder
 - Converts all images to WebP format
-- Reduces image quality to 80% (adjustable in `scripts/compress-images.js`)
+- Reduces image quality to 80% (adjustable in `scripts/process-images.js`)
 - Replaces original images with compressed versions
 - Maintains the original folder structure within your package folder
 
-To customize compression settings, edit the `scripts/compress-images.js` file.
+To customize compression settings, edit the `scripts/process-images.js` file.
 
 
 ## Publishing Your Package

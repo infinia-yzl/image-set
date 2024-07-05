@@ -1,0 +1,49 @@
+[
+  {
+    "filename": "hero2.webp",
+    "tags": [
+      {
+        "name": "people",
+        "title": "People",
+        "description": "Images featuring individuals or groups of people"
+      },
+      {
+        "name": "1_0_0",
+        "title": "Image set Version 1",
+        "description": "Images from Version 1"
+      }
+    ],
+    "label": "Handsome Hero"
+  },
+  {
+    "filename": "mecha/mecha1.webp",
+    "tags": [
+      {
+        "name": "tech",
+        "title": "Technology",
+        "description": "Images related to technological devices or concepts"
+      },
+      {
+        "name": "1_1_0",
+        "title": "Image set Version 1.1",
+        "description": "Images from Version 1.1"
+      }
+    ],
+    "label": "Flying Mecha"
+  },
+  {
+    "filename": "hero1.webp",
+    "tags": [],
+    "label": ""
+  },
+  {
+    "filename": "hero3.webp",
+    "tags": [],
+    "label": ""
+  },
+  {
+    "filename": "mecha/mecha2.webp",
+    "tags": [],
+    "label": ""
+  }
+]
