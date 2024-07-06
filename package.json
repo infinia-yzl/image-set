@@ -35,6 +35,7 @@
   "license": "MIT",
   "scripts": {
     "process-images": "node scripts/process-images.js",
+    "compress-images": "node scripts/process-images.js --compress-only",
     "publish-package": "node scripts/publish.js",
     "test": "jest",
     "build-types": "tsc --declaration --emitDeclarationOnly --outDir dist",

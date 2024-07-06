@@ -285,6 +285,15 @@ async function main() {
   await loadMetadata();
   await loadTagConfig();
 
+  if (process.argv.includes('--compress-only')) {
+    console.log('Running in compression-only mode');
+    await compressImages(baseImageDir);
+    console.log('Image compression completed.');
+    await saveMetadata();
+    await saveTagConfig();
+    return;
+  }
+
   while (true) {
     const action = await select({
       message: 'What would you like to do?',
