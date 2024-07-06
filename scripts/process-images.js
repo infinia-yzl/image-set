@@ -4,8 +4,8 @@ const sharp = require('sharp');
 const { checkbox, input, select } = require('@inquirer/prompts');
 
 const baseImageDir = path.join(__dirname, '..', 'public', 'images');
-const metadataPath = path.join(__dirname, '..', 'image-metadata.json');
-const tagConfigPath = path.join(__dirname, '..', 'tag-config.json');
+const metadataPath = path.join(__dirname, '..', 'src/image-metadata.json');
+const tagConfigPath = path.join(__dirname, '..', 'src/tag-config.json');
 
 /**
  * @typedef {Object} ImageMetadata

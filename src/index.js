@@ -7,8 +7,8 @@ const packageJson = require('../package.json');
  */
 const imageSetName = packageJson.name.replace(/^@.*\//, ''); // Removes scope if present
 const imageSetDir = path.join(__dirname, '..', 'public', 'images');
-const metadataPath = path.join(__dirname, '..', 'image-metadata.json');
-const tagConfigPath = path.join(__dirname, '..', 'tag-config.json');
+const metadataPath = path.join(__dirname, '..', 'src', 'image-metadata.json');
+const tagConfigPath = path.join(__dirname, '..', 'src', 'tag-config.json');
 
 /**
  * @typedef {Object} ImageMetadata
