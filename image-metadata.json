@@ -33,8 +33,19 @@
   },
   {
     "filename": "hero1.webp",
-    "tags": [],
-    "label": ""
+    "tags": [
+      {
+        "name": "people",
+        "title": "People",
+        "description": "Images featuring individuals or groups of people"
+      },
+      {
+        "name": "hq",
+        "title": "High Quality",
+        "description": "Images with exceptional clarity and detail"
+      }
+    ],
+    "label": "Super Handsome Blonde Hero"
   },
   {
     "filename": "hero3.webp",
