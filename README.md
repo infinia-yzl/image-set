@@ -33,7 +33,7 @@ This repository was created to facilitate static image contributions for web pro
 The core concept is to simplify image contributions to the level of a pull request. Here's how it works:
 - Git manages the submission process
 - npm handles image packaging
-- Scripts optimize images 
+- Scripts optimize images
 
 This solution may be suitable for you if:
 - You're developing an open-source project and want to encourage contributions (from others) for assets
@@ -85,14 +85,14 @@ This diagram illustrates how the Image Set package is published to npm, installe
    npm run process-images
    ```
    This will run an interactive CLI where you may select between compressing images or tagging your images.
-   - **Compress images**: You should run the Compress Images command first before tagging them.
-   This will organize your images, compress them, convert them to WebP format, and replace the originals -- remember to back up your images outside the project before proceeding.
-   See also [Image Compression](#image-compression).
+    - **Compress images**: You should run the Compress Images command first before tagging them.
+      This will organize your images, compress them, convert them to WebP format, and replace the originals -- remember to back up your images outside the project before proceeding.
+      See also [Image Compression](#image-compression).
 
-   - **Tag images**:
-   You can manage tags or add from the list of existing tags. After compressing the images, you should normally add some of your own custom tags first before tagging your images. You may also manually edit the `tag-config.json` file to add or remove tags.
-   It also prompts for other metadata such as the name, title and description.
-   See also [Metadata & Tagging](#metadata--tagging).
+    - **Tag images**:
+      You can manage tags or add from the list of existing tags. After compressing the images, you should normally add some of your own custom tags first before tagging your images. You may also manually edit the `tag-config.json` file to add or remove tags.
+      It also prompts for other metadata such as the name, title and description.
+      See also [Metadata & Tagging](#metadata--tagging).
 
 6. Update the LICENSE file with your preferred license
 
@@ -136,7 +136,7 @@ To customize compression settings, edit the `scripts/process-images.js` file.
 Each image can have associated metadata, including a filename, label, and tags. The metadata is stored in `image-metadata.json`.
 
 ### Tagging
-Images can be tagged with descriptive tags to facilitate search and organization. The tag configuration is stored in `tag-config.json`. 
+Images can be tagged with descriptive tags to facilitate search and organization. The tag configuration is stored in `tag-config.json`.
 You may manually edit the file or use the interactive CLI (`npm run process-images`) to manage tags.
 
 ### Tag Configuration
