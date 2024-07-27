@@ -250,6 +250,10 @@ Remember, once you publish a version, you can't overwrite it. Always increment t
 
 Note: All images are compressed and converted to WebP format. Make sure to use the `.webp` extension when referencing them.
 
+## Upgrading
+
+For any new versions of the template, you can upgrade your package by following the instructions in [Releases](https://github.com/infinia-yzl/image-set/releases) or, by applying the patches in the `patches` folder manually.
+
 ## License
 
 See the [LICENSE](LICENSE) file for details.
