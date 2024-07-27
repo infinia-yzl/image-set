@@ -11,7 +11,7 @@ const tagConfigPath = path.join(__dirname, '..', 'src/tag-config.json');
  * @typedef {Object} ImageMetadata
  * @property {string} filename - The name of the image file
  * @property {string} label - User-defined label for the image
- * @property {Tag[]} tags - Array of tags associated with the image
+ * @property {string[]} tags - Array of tag names associated with the image
  */
 
 /** @type {ImageMetadata[]} */
@@ -129,15 +129,15 @@ function getAllTags() {
 }
 
 /**
- * Ensures that the input is an array of Tags
- * @param {Tag|Tag[]|undefined} input - The input to check
- * @returns {Tag[]} - An array of Tags
+ * Ensures that the input is an array of tag names
+ * @param {string|string[]|undefined} input - The input to check
+ * @returns {string[]} - An array of tag names
  */
 function ensureTagArray(input) {
   if (Array.isArray(input)) {
-    return input.filter(tag => tag && typeof tag === 'object' && 'name' in tag);
+    return input.filter(tag => typeof tag === 'string');
   }
-  if (input && typeof input === 'object' && 'name' in input) {
+  if (typeof input === 'string') {
     return [input];
   }
   return [];
@@ -146,13 +146,13 @@ function ensureTagArray(input) {
 /**
  * Updates metadata for a given image
  * @param {string} imagePath - The relative path of the image
- * @param {Tag[]} tags - The tags to set for the image
+ * @param {string[]} tags - The tag names to set for the image
  * @param {string} label - The label for the image
  */
 function updateImageMetadata(imagePath, tags, label) {
   const index = imageMetadata.findIndex(img => img.filename === imagePath);
   const safeLabel = label || '';
-  const safeTags = ensureTagArray(tags);
+  const safeTags = Array.isArray(tags) ? tags : [];
 
   if (index !== -1) {
     imageMetadata[index].tags = safeTags;
@@ -165,8 +165,8 @@ function updateImageMetadata(imagePath, tags, label) {
 /**
  * Prompts user to select tags using checkboxes
  * @param {string} imageName - Name of the image being tagged
- * @param {Tag[]} currentTags - Current tags of the image
- * @returns {Promise<Tag[]>} - Array of selected tags
+ * @param {string[]} currentTags - Current tag names of the image
+ * @returns {Promise<string[]>} - Array of selected tag names
  */
 async function promptForTags(imageName, currentTags) {
   console.log(`Selecting tags for ${imageName}`);
@@ -175,8 +175,8 @@ async function promptForTags(imageName, currentTags) {
 
   const choices = allTags.map(tag => ({
     name: `${tag.name} - ${tag.description}`,
-    value: tag,
-    checked: safeCurrentTags.some(t => t.name === tag.name)
+    value: tag.name,
+    checked: safeCurrentTags.includes(tag.name)
   }));
 
   console.log(`Preparing to show tag selection menu for ${imageName}`);
@@ -285,6 +285,18 @@ async function main() {
   await loadMetadata();
   await loadTagConfig();
 
+  // Check if metadata needs to be migrated
+  const needsMigration = imageMetadata.some(img => img.tags && img.tags.some(tag => typeof tag === 'object'));
+  if (needsMigration) {
+    console.log('Migrating metadata to new format...');
+    imageMetadata = imageMetadata.map(img => ({
+      ...img,
+      tags: img.tags.map(tag => typeof tag === 'object' ? tag.name : tag)
+    }));
+    await saveMetadata();
+    console.log('Metadata migration completed.');
+  }
+
   if (process.argv.includes('--compress-only')) {
     console.log('Running in compression-only mode');
     await compressImages(baseImageDir);
@@ -339,12 +351,18 @@ async function main() {
     }
 
     if (action === 'view') {
+      const allTags = getAllTags();
       for (const image of imageMetadata) {
         console.log(`${image.filename}:`);
         console.log(`  Label: ${image.label}`);
-        console.log(`  Tags: ${image.tags.map(t => t.name).join(', ')}`);
-        for (const tag of image.tags) {
-          console.log(`    - ${tag.name}: ${tag.description}`);
+        console.log(`  Tags: ${image.tags.join(', ')}`);
+        for (const tagName of image.tags) {
+          const fullTag = allTags.find(t => t.name === tagName);
+          if (fullTag) {
+            console.log(`    - ${fullTag.name}: ${fullTag.description}`);
+          } else {
+            console.log(`    - ${tagName}: Description not found`);
+          }
         }
       }
       await input({ message: 'Press Enter to continue...' });

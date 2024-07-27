@@ -14,7 +14,7 @@ const tagConfigPath = path.join(__dirname, '..', 'src', 'tag-config.json');
  * @typedef {Object} ImageMetadata
  * @property {string} filename - The name of the image file
  * @property {string} label - User-defined label for the image
- * @property {Tag[]} tags - Array of tags associated with the image
+ * @property {string[]} tags - Array of tag names associated with the image
  */
 
 /**
@@ -68,7 +68,16 @@ function getImageSetName() {
 function getImageMetadata() {
   try {
     const data = fs.readFileSync(metadataPath, 'utf8');
-    return JSON.parse(data);
+    const metadata = JSON.parse(data);
+    const allTags = getAllTags();
+
+    return metadata.map(item => ({
+      ...item,
+      tags: item.tags.map(tagName => {
+        const fullTag = allTags.find(t => t.name === tagName);
+        return fullTag || { name: tagName, title: tagName, description: '' };
+      })
+    }));
   } catch (error) {
     console.error('Error reading metadata:', error);
     return [];

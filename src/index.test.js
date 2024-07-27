@@ -74,6 +74,11 @@ describe('Image Set Library', () => {
       expect(metadata.filename).toBe(imagePath);
       expect(metadata).toHaveProperty('label');
       expect(Array.isArray(metadata.tags)).toBe(true);
+      metadata.tags.forEach(tag => {
+        expect(tag).toHaveProperty('name');
+        expect(tag).toHaveProperty('title');
+        expect(tag).toHaveProperty('description');
+      });
     });
   });
 
@@ -102,26 +107,25 @@ describe('Image Set Library', () => {
   test('All tags used in image metadata exist in tag configuration', () => {
     const metadata = getImageMetadata();
     const tagConfig = getTagConfig();
-    const allConfigTags = [...tagConfig.subject, ...tagConfig.version, ...tagConfig.general].map(tag => tag.name);
+    const allConfigTags = [...tagConfig.subject, ...tagConfig.version, ...tagConfig.general];
 
     metadata.forEach(image => {
       image.tags.forEach(tag => {
-        expect(allConfigTags).toContain(tag.name);
+        expect(allConfigTags.some(configTag => configTag.name === tag.name)).toBeTruthy();
       });
     });
   });
 
   test('All tags in metadata have consistent information with tag configuration', () => {
     const metadata = getImageMetadata();
-    const tagConfig = getTagConfig();
-    const allConfigTags = [...tagConfig.subject, ...tagConfig.version, ...tagConfig.general];
+    const allTags = getAllTags();
 
     metadata.forEach(image => {
-      image.tags.forEach(metadataTag => {
-        const configTag = allConfigTags.find(tag => tag.name === metadataTag.name);
+      image.tags.forEach(tag => {
+        const configTag = allTags.find(t => t.name === tag.name);
         expect(configTag).toBeDefined();
-        expect(metadataTag.title).toBe(configTag.title);
-        expect(metadataTag.description).toBe(configTag.description);
+        expect(tag.title).toBe(configTag.title);
+        expect(tag.description).toBe(configTag.description);
       });
     });
   });

@@ -2,48 +2,24 @@
   {
     "filename": "hero2.webp",
     "tags": [
-      {
-        "name": "people",
-        "title": "People",
-        "description": "Images featuring individuals or groups of people"
-      },
-      {
-        "name": "1_0_0",
-        "title": "Image set Version 1",
-        "description": "Images from Version 1"
-      }
+      "people",
+      "1_0_0"
     ],
     "label": "Handsome Hero"
   },
   {
     "filename": "mecha/mecha1.webp",
     "tags": [
-      {
-        "name": "tech",
-        "title": "Technology",
-        "description": "Images related to technological devices or concepts"
-      },
-      {
-        "name": "1_1_0",
-        "title": "Image set Version 1.1",
-        "description": "Images from Version 1.1"
-      }
+      "tech",
+      "1_1_0"
     ],
     "label": "Flying Mecha"
   },
   {
     "filename": "hero1.webp",
     "tags": [
-      {
-        "name": "people",
-        "title": "People",
-        "description": "Images featuring individuals or groups of people"
-      },
-      {
-        "name": "hq",
-        "title": "High Quality",
-        "description": "Images with exceptional clarity and detail"
-      }
+      "people",
+      "hq"
     ],
     "label": "Super Handsome Blonde Hero"
   },
